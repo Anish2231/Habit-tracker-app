@@ -17,10 +17,9 @@ export default function App() {
   // Check if user is logged in (check if credentials are stored)
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const email = await AsyncStorage.getItem('userEmail');
-      const password = await AsyncStorage.getItem('userPassword');
-      if (email && password) {
-        setIsLoggedIn(true);  // If credentials exist, set the user as logged in
+      const isLoggedInValue = await AsyncStorage.getItem('isLoggedIn');
+      if (isLoggedInValue === 'true') {
+        setIsLoggedIn(true);  // If 'isLoggedIn' flag is true, set the user as logged in
       }
     };
 
@@ -48,18 +47,18 @@ export default function App() {
         <Stack.Screen 
           name="Category" 
           component={CategoryScreen}
-          options={{ headerShown: true }}  // Hide header for Category screen
+          options={{ headerShown: true }}  // Show header for Category screen
         />
         <Stack.Screen 
           name="AddHabit" 
           component={AddHabitScreen}
-          options={{ headerShown: true }}  // Hide header for Add Habit screen
+          options={{ headerShown: true }}  // Show header for Add Habit screen
         />
-        <Stack.Screen name="ManageHabit" 
-        component={ManageHabitsScreen} 
-        options={{ headerShown: true }} />
-
-
+        <Stack.Screen 
+          name="ManageHabit" 
+          component={ManageHabitsScreen}
+          options={{ headerShown: true }}  // Show header for Manage Habit screen
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

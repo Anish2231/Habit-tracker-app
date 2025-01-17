@@ -1,28 +1,39 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#F4F6F9', // Soft background color for the screen
+  },
+  header: {
+    marginBottom: 30,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#6200EE',
   },
   input: {
-    height: 40,
-    borderColor: '#ccc',
+    height: 50,
+    borderColor: '#6200EE',
     borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 10,
-  },
-  dropdownContainer: {
-    height: 40,
-    marginBottom: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+    paddingLeft: 15,
+    backgroundColor: '#FFFFFF',
+    fontSize: 16,
   },
   dropdown: {
-    borderColor: '#ccc',
-    borderWidth: 1,
+    height: 50,
+    borderRadius: 10,
+    marginBottom: 20,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#6200EE',
   },
   dropdownList: {
-    backgroundColor: '#f9f9f9',
+    borderColor: '#6200EE',
+    borderRadius: 10,
   },
 });
-
-export default styles;

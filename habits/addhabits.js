@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
+import { View, TextInput, Button, Alert, Text, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
-import styles from '../habits/habitstyles'; // Adjust your styles as needed
+import styles from './habitstyles'; // Adjust the path to your styles
 
 export default function AddHabitScreen({ navigation }) {
   const [habitName, setHabitName] = useState('');
@@ -17,8 +17,8 @@ export default function AddHabitScreen({ navigation }) {
   function getCurrentDate() {
     const date = new Date();
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if month is single digit
-    const day = date.getDate().toString().padStart(2, '0'); // Add leading zero if day is single digit
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
 
@@ -35,7 +35,6 @@ export default function AddHabitScreen({ navigation }) {
     }
     return options;
   }
-
 
   const saveHabit = async () => {
     console.log("Selected date is ", selectedDate);
@@ -78,54 +77,49 @@ export default function AddHabitScreen({ navigation }) {
       console.error('Error saving habit', error);
     }
   };
-  
-  
-    
+
+  // List of inputs to render
+  const inputFields = [
+    {
+      component: <TextInput style={styles.input} placeholder="Enter habit name" value={habitName} onChangeText={setHabitName} />,
+    },
+    {
+      component: (
+        <DropDownPicker
+          open={open}
+          value={habitType}
+          items={[
+            { label: 'Selfcare', value: 'Selfcare' },
+            { label: 'Outdoor', value: 'Outdoor' },
+            { label: 'Home', value: 'Home' },
+            { label: 'Other', value: 'Other' },
+          ]}
+          setOpen={setOpen}
+          setValue={setHabitType}
+          placeholder="Select Habit Type"
+          style={styles.dropdown}
+          dropDownStyle={styles.dropdownList}
+        />
+      ),
+    },
+    {
+      component: <TextInput style={styles.input} placeholder="Enter frequency (e.g., Daily, Weekly)" value={frequency} onChangeText={setFrequency} />,
+    },
+    {
+      component: <TextInput style={styles.input} placeholder="Enter background color (Hex code)" value={backgroundColor} onChangeText={setBackgroundColor} />,
+    },
+  ];
 
   return (
-    <View style={styles.container}>
-      {/* Habit Name Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Enter habit name"
-        value={habitName}
-        onChangeText={setHabitName}
-      />
-
-      {/* Habit Type Picker */}
-      <DropDownPicker
-        open={open}
-        value={habitType}
-        items={[
-          { label: 'Physical', value: 'Physical' },
-          { label: 'Mental', value: 'Mental' },
-          { label: 'Social', value: 'Social' },
-        ]}
-        setOpen={setOpen}
-        setValue={setHabitType}
-        placeholder="Select Habit Type"
-        style={styles.dropdown}
-        dropDownStyle={styles.dropdownList}
-      />
-
-      {/* Frequency Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Enter frequency (e.g., Daily, Weekly)"
-        value={frequency}
-        onChangeText={setFrequency}
-      />
-
-      {/* Background Color Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Enter background color (Hex code)"
-        value={backgroundColor}
-        onChangeText={setBackgroundColor}
-      />
-
-      {/* Save Habit Button */}
-      <Button title="Save Habit" onPress={saveHabit} color="#6200EE" />
-    </View>
+    <FlatList
+      data={inputFields}
+      renderItem={({ item }) => item.component}
+      ListHeaderComponent={<View style={styles.header}><Text style={styles.headerTitle}>Add New Habit</Text></View>}
+      ListFooterComponent={
+        <Button title="Save Habit" onPress={saveHabit} color="#6200EE" />
+      }
+      keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.container}
+    />
   );
 }

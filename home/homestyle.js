@@ -1,104 +1,109 @@
-import { StyleSheet } from 'react-native';
-
-export default StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f7f7f7',
     padding: 20,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 25,
+    padding: 10,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerRight: {
+    alignItems: 'flex-end',
   },
   userName: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    marginRight: 10,
   },
   userScore: {
-    fontSize: 18,
-    color: '#6200EE',
-    fontWeight: '600',
-  },
-  logoutContainer: {
-    alignItems: 'flex-end',
-    marginBottom: 20,
+    fontSize: 16,
   },
   calendarContainer: {
-    marginBottom: 30,
-    borderRadius: 15,
+    marginBottom: 20,
+    borderRadius: 10,
     overflow: 'hidden',
-    elevation: 5,
+    backgroundColor: '#fff',
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
-  buttonsContainer: {
+  actionButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  button: {
+  cardButton: {
     backgroundColor: '#6200EE',
-    padding: 12,
-    borderRadius: 5,
-    flex: 1,
-    marginHorizontal: 5,
+    padding: 15,
+    borderRadius: 10,
+    width: '30%',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
-  buttonText: {
+  cardButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontWeight: 'bold',
   },
   habitItemContainer: {
     backgroundColor: '#fff',
-    padding: 15,
     borderRadius: 10,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    padding: 15,
+    marginVertical: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
   habitItemText: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: '#333',
   },
   habitItemStreak: {
     fontSize: 14,
     color: '#888',
-    marginVertical: 8,
+    marginTop: 5,
   },
   badgeText: {
-    fontSize: 16,
-    color: '#4caf50',
+    fontSize: 14,
+    color: '#6200EE',
     marginTop: 5,
   },
   completeButton: {
     backgroundColor: '#6200EE',
-    padding: 10,
-    borderRadius: 5,
+    paddingVertical: 10,
     marginTop: 10,
-    alignItems: 'center',
+    borderRadius: 5,
   },
   completeButtonText: {
     color: '#fff',
-    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   noHabitsText: {
-    fontSize: 16,
     textAlign: 'center',
+    fontSize: 18,
     color: '#888',
   },
   completedHabit: {
-    backgroundColor: '#E0E0E0',
-    borderColor: '#BDBDBD',
+    backgroundColor: '#e0e0e0',
   },
   completedText: {
-    color: '#BDBDBD',
     textDecorationLine: 'line-through',
+    color: '#888',
   },
-});
+};
+
+export default styles;

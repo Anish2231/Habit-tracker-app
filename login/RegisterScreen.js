@@ -51,6 +51,8 @@ export default function RegisterScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.header}>Register</Text>
+
             {/* Email Input */}
             <View style={styles.inputContainer}>
                 <TextInput
@@ -60,7 +62,7 @@ export default function RegisterScreen({ navigation }) {
                     onChangeText={setEmail}
                 />
             </View>
-
+            
             {/* Name Input */}
             <View style={styles.inputContainer}>
                 <TextInput
@@ -70,7 +72,7 @@ export default function RegisterScreen({ navigation }) {
                     onChangeText={setName}
                 />
             </View>
-
+            
             {/* Password Input */}
             <View style={styles.inputContainer}>
                 <TextInput
@@ -81,7 +83,7 @@ export default function RegisterScreen({ navigation }) {
                     onChangeText={setPassword}
                 />
             </View>
-
+            
             {/* Confirm Password Input */}
             <View style={styles.inputContainer}>
                 <TextInput
@@ -92,15 +94,15 @@ export default function RegisterScreen({ navigation }) {
                     onChangeText={setConfirmPassword}
                 />
             </View>
-
+            
             {/* Register Button */}
-            <View style={styles.inputContainer}>
+            <View style={styles.buttonContainer}>
                 <Button title="Register" onPress={handleRegister} color="#6200EE" />
             </View>
 
             {/* Navigate to Login */}
             <View style={styles.loginContainer}>
-                <Text>Already have an account?</Text>
+                <Text>Already have an account? </Text>
                 <Text
                     style={styles.linkText}
                     onPress={() => navigation.navigate('Login')}  // Navigate to Login screen

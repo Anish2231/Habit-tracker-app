@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Button, Alert } from 'react-nat
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Calendar } from 'react-native-calendars';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import styles from '../home/homestyle';
+import styles from './homestyle'; // Ensure styles are correctly imported
 
 export default function HomeScreen() {
   const [habits, setHabits] = useState([]);
@@ -152,15 +152,21 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.userName}>{`Hello, ${userName}`}</Text>
-        <Text style={styles.userScore}>{`Score: ${score}`}</Text>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Text style={styles.userName}>{`Hello, ${userName}\n`}{`Score: ${score}`}</Text>
+          </View>
+         
+        </View>
+
+        <View style={styles.headerRight}>
+          <Button title="Logout" onPress={handleLogout} color="#6200EE" />
+        </View>
       </View>
 
-      <View style={styles.logoutContainer}>
-        <Button title="Logout" onPress={handleLogout} color="#6200EE" />
-      </View>
-
+      {/* Calendar */}
       <View style={styles.calendarContainer}>
         <Calendar
           onDayPress={onDayPress}
@@ -176,31 +182,40 @@ export default function HomeScreen() {
             selectedDayTextColor: '#fff',
             todayTextColor: '#ff6347',
             arrowColor: '#6200EE',
+            monthTextColor: '#333',
+            dayTextColor: '#333',
+            textSectionTitleColor: '#333',
+            textDayFontWeight: 'bold',
+            textMonthFontWeight: 'bold',
+            textDayFontSize: 16,
+            textMonthFontSize: 18,
           }}
         />
       </View>
 
-      <View style={styles.buttonsContainer}>
+      {/* Action Buttons */}
+      <View style={styles.actionButtons}>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.cardButton}
           onPress={() => navigation.navigate('AddHabit')}
         >
-          <Text style={styles.buttonText}>Add Habit</Text>
+          <Text style={styles.cardButtonText}>Add Habit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.cardButton}
           onPress={() => navigation.navigate('Category')}
         >
-          <Text style={styles.buttonText}>Go to Categories</Text>
+          <Text style={styles.cardButtonText}>Categories</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('ManageHabit')}  // Navigate to ManageHabitScreen
+          style={styles.cardButton}
+          onPress={() => navigation.navigate('ManageHabit')}
         >
-          <Text style={styles.buttonText}>Manage Habits</Text>
+          <Text style={styles.cardButtonText}>Manage Habits</Text>
         </TouchableOpacity>
       </View>
 
+      {/* Habit List */}
       <FlatList
         data={habits}
         keyExtractor={(item) => item.id.toString()}
@@ -224,11 +239,11 @@ export default function HomeScreen() {
 
               <TouchableOpacity
                 style={[styles.completeButton, { backgroundColor: isCompletedToday ? '#ccc' : '#6200EE' }]}
-                onPress={() => markComplete(item.id)}
+                onPress={() => !isCompletedToday && markComplete(item.id)}
                 disabled={isCompletedToday}
               >
                 <Text style={styles.completeButtonText}>
-                  {isCompletedToday ? 'Completed' : 'Mark Complete'}
+                  {isCompletedToday ? 'Completed' : 'Complete Habit'}
                 </Text>
               </TouchableOpacity>
             </View>

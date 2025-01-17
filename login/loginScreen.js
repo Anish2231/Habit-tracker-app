@@ -43,6 +43,7 @@ export default function LoginScreen({ navigation }) {
         setError('Failed to login. Please try again.');
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
@@ -50,7 +51,7 @@ export default function LoginScreen({ navigation }) {
       {/* Email Input */}
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, error && styles.inputError]}  // Add error styling
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
@@ -60,7 +61,7 @@ export default function LoginScreen({ navigation }) {
       {/* Password Input */}
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, error && styles.inputError]}  // Add error styling
           placeholder="Password"
           value={password}
           onChangeText={(text) => setPassword(text)}
