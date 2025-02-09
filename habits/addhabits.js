@@ -81,7 +81,7 @@ export default function AddHabitScreen({ navigation }) {
   // List of inputs to render
   const inputFields = [
     {
-      component: <TextInput style={styles.input} placeholder="Enter habit name" value={habitName} onChangeText={setHabitName} />,
+      component: <TextInput style={styles.input} placeholder="Enter habit name"  placeholderTextColor="black" value={habitName} onChangeText={setHabitName} />,
     },
     {
       component: (
@@ -97,16 +97,22 @@ export default function AddHabitScreen({ navigation }) {
           setOpen={setOpen}
           setValue={setHabitType}
           placeholder="Select Habit Type"
+          searchPlaceholderTextColor="black"
+        
           style={styles.dropdown}
           dropDownStyle={styles.dropdownList}
         />
       ),
     },
     {
-      component: <TextInput style={styles.input} placeholder="Enter frequency (e.g., Daily, Weekly)" value={frequency} onChangeText={setFrequency} />,
+      component: <TextInput style={styles.input} 
+      
+      placeholder="Enter frequency (e.g., Daily, Weekly)"
+      placeholderTextColor="black"
+      value={frequency} onChangeText={setFrequency} />,
     },
     {
-      component: <TextInput style={styles.input} placeholder="Enter background color (Hex code)" value={backgroundColor} onChangeText={setBackgroundColor} />,
+      component: <TextInput style={styles.input} placeholder="Enter background color (Hex code)"  placeholderTextColor="black" value={backgroundColor} onChangeText={setBackgroundColor} />,
     },
   ];
 

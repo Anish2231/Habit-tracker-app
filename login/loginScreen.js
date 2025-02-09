@@ -53,6 +53,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={[styles.input, error && styles.inputError]}  // Add error styling
           placeholder="Email"
+          placeholderTextColor="black"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
@@ -63,6 +64,7 @@ export default function LoginScreen({ navigation }) {
         <TextInput
           style={[styles.input, error && styles.inputError]}  // Add error styling
           placeholder="Password"
+          placeholderTextColor="black"
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
